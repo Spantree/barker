@@ -18,3 +18,4 @@
 /coverage
 .idea
 *.iml
+stress_tests/target
