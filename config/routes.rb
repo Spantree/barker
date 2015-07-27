@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+
   resources :sessions,      only: [:new, :create, :destroy]
   resources :tweets,        only: [:index, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   get    'signin'   => 'sessions#new'
   delete 'signout'  => 'sessions#destroy'
   get    'about'    => 'static_pages#about'
+  delete 'all'      => 'all#destroy'
 
   match '*path' => 'application#routing_error', via: :all
 end
