@@ -103,22 +103,23 @@ class UserSimulation extends Simulation {
         )
         .saveAs("userNameToFollow"))
     )
+    .exitHereIfFailed
     .pause(1)
     .exec(http("visit other user profile")
       .get("/users/${userNameToFollow}")
       .check(status.is(200))
       .check(regex( """<input type="hidden" value="(\d+)" name="relationship\[followed_id\]" id="relationship_followed_id" />""").find.saveAs("userIdToFollow"))
     )
+    .exitHereIfFailed
     .pause(1)
-    .doIf(session => session("userIdToFollow") != "") {
-      exec(http("follow user")
-        .post("/relationships")
-        .formParam("utf8", "✓")
-        .formParam("relationship[followed_id]", "${userIdToFollow}")
-        .formParam("commit", "Follow")
-        .check(status.is(200))
-      )
-    }
+    .exec(http("follow user")
+      .post("/relationships")
+      .formParam("utf8", "✓")
+      .formParam("relationship[followed_id]", "${userIdToFollow}")
+      .formParam("commit", "Follow")
+      .check(status.is(200))
+    )
+
 
   setUp(userScn.inject(rampUsers(userCount) over (20 seconds)).protocols(httpProtocol))
 }
