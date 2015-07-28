@@ -1,0 +1,14 @@
+db:
+  image: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    POSTGRES_PASSWORD: "insecurepassword"
+consul:
+  image: progrium/consul
+  # net: host
+  ports:
+    - "8400:8400"
+    - "8500:8500"
+    - "8600:53/udp"
+  command: "-server -bootstrap -ui-dir /ui"
