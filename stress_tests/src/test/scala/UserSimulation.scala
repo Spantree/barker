@@ -14,6 +14,8 @@ class UserSimulation extends Simulation {
   val log = LoggerFactory.getLogger(classOf[UserSimulation])
 
   val userCount = 10
+  val baseURL = "http://172.51.1.100:3000"
+
   val nameGenius = new NameGenius
   val lorem = new LoremIpsum
 
@@ -37,7 +39,7 @@ class UserSimulation extends Simulation {
     }
   )
 
-  val baseURL = "http://localhost:3000"
+
 
   log.info(s"Running simulation for ${userCount} users.")
 
