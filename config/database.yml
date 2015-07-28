@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  host: db
+  host: postgres.barker.internal
   username: postgres
   password: insecurepassword
   pool: 5
@@ -25,7 +25,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  host: db
+  host: postgres.barker.internal
   username: postgres
   password: insecurepassword
   pool: 50
