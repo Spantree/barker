@@ -117,6 +117,11 @@ GEM
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    lograge (0.3.4)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
+    logstash-event (1.2.02)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.9)
@@ -133,6 +138,7 @@ GEM
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    pg (0.18.2)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -258,6 +264,9 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
+  lograge
+  logstash-event
+  pg
   pry
   quiet_assets
   rails (= 4.2.3)
