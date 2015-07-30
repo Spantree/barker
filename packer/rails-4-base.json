@@ -2,7 +2,7 @@
   "variables": {
     "ami_name": "rails-4-base",
     "build_number": "{{env `CIRCLE_BUILD_NUM`}}",
-    "sha1_hash": "{{env `CIRCLE_SHA1`}}",
+    "sha1_hash": "{{env `CIRCLE_SHA1`}}"
   },
   "builders": [
     {
