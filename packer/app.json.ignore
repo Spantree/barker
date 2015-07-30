@@ -1,6 +1,9 @@
 {
   "variables": {
-    "ami_name": "barker-app"
+    "ami_name": "barker-app",
+    "build_number": "{{env `CIRCLE_BUILD_NUM`}}",
+    "sha1_hash": "{{env `CIRCLE_SHA1`}}",
+    "project_dir": "/usr/src/app"
   },
   "builders": [
     {
@@ -9,17 +12,27 @@
       "source_ami": "ami-c1558faa",
       "instance_type": "c3.large",
       "ssh_username": "ubuntu",
-      "ami_name": "{{user `ami_name`}}",
+      "ami_name": "{{user `ami_name`}}-{{user `build_number`}}",
       "tags": {
-        "Name": "{{user `ami_name`}}"
+        "Name": "{{user `ami_name`}}",
+        "Build-Number": "{{user `build_number`}}",
+        "Sha1": "{{user `sha1_hash`}}"
       }
     }
   ],
   "provisioners": [
     {
+      "type": "shell",
+      "execute_command": "sudo {{.Path}}",
+      "inline": [
+        "mkdir -p {{user `project_dir`}}",
+        "chown ubuntu:ubuntu {{user `project_dir`}}"
+      ]
+    },
+    {
       "type": "file",
-      "source": "/",
-      "destination": "/usr/src/app"
+      "source": "../",
+      "destination": "{{user `project_dir`}}"
     },
     {
       "type": "shell",

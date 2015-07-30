@@ -24,19 +24,6 @@
     {
       "type": "shell",
       "execute_command": "sudo {{.Path}}",
-      "inline": [
-        "mkdir -p {{user `project_dir`}}",
-        "chown ubuntu:ubuntu {{user `project_dir`}}"
-      ]
-    },
-    {
-      "type": "file",
-      "source": "../",
-      "destination": "{{user `project_dir`}}"
-    },
-    {
-      "type": "shell",
-      "execute_command": "sudo {{.Path}}",
       "scripts": [
         "../system/scripts/install-ruby.sh",
         "../system/scripts/install-bundler.sh",
