@@ -14,7 +14,7 @@ if [ ! -f "/var/cache/install-flags/ruby/${VERSION}" ]; then
 	# && mv /var/lib/apt/lists /var/lib/apt/lists.old_`date '+%Y%m%d_%H%M%S'` \
 	# && mkdir -p /var/lib/apt/lists/partial \
  #    && apt-get clean \
-	&& apt-get update \
+	apt-get update \
 	&& apt-get install -y git-core curl ruby-dev rbenv zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libpq-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
 	
 	rbenv install -v "${VERSION}" \
