@@ -8,8 +8,10 @@ consul:
   image: progrium/consul
   net: host
   command: "-server -bootstrap -ui-dir /ui"
+elk:
+  image: spantree/elk
   ports:
-    - "8400:8400"
-    - "8500:8500"
-    - "8600:53/udp"
-  command: "-server -bootstrap -ui-dir /ui"
+    - "5601:5601"
+    - "9200:9200"
+    - "5000:5000"
+    - "3333:3333"
