@@ -39,19 +39,21 @@ module Rails4TwitterClone
 
     config.autoflush_log = true
 
-    Diplomat.configure do |config|
-      config.url = ENV["CONSUL_URL"]
+    if ENV.has_key?("CONSUL_URL")
+      Diplomat.configure do |config|
+        config.url = ENV["CONSUL_URL"]
+      end
+
+      config.active_record.logger = nil
+
+      # Configure Logstash URL from Consul
+      logstash_service = Diplomat::Service.get('logstash')
+
+      config.logstash.host = logstash_service.ServiceAddress
+      config.logstash.port = logstash_service.ServicePort
+      config.logstash.type = :tcp
+
+      puts("Connecting to logstash with config: #{config.logstash}")
     end
-
-    config.active_record.logger = nil
-
-    # # Configure Logstash URL from Consul
-    logstash_service = Diplomat::Service.get('logstash')
-
-    config.logstash.host = logstash_service.ServiceAddress
-    config.logstash.port = logstash_service.ServicePort
-    config.logstash.type = :tcp
-
-    puts("Connecting to logstash with config: #{config.logstash}")
   end
 end
