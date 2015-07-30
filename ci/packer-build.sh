@@ -7,5 +7,5 @@ set -e
 cd "${ROOT_DIR}"
 
 for t in *.json; do
-  "${ROOT_DIR}/ci/packer-ami.rb" build "${t%%.json}"
+  echo "${t%%.json}"
 done
