@@ -19,7 +19,7 @@ test:
 
 deployment:
   packer:
-    branch: master
+    branch: develop
     commands:
       - ./ci/packer-build.sh
       - ./ci/push_to_github.sh
