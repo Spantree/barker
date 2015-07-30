@@ -11,13 +11,13 @@ BUNDLE_APP_CONFIG=$GEM_HOME
 
 cd /usr/src/app
 
-mkdir -p /var/cache/install-flags/app
+mkdir -p /var/install-flags/app
 
 GEMFILE_SHA256=$(sha256sum Gemfile | cut -f 1 -d " ")
 GEMFILE_LOCK_SHA256=$(sha256sum Gemfile.lock | cut -f 1 -d " ")
 
-GEMFILE_FLAG_PATH="/var/cache/install-flags/app/Gemfile-${GEMFILE_SHA256}"
-GEMFILE_LOCK_FLAG_PATH="/var/cache/install-flags/app/Gemfile.lock-${GEMFILE_LOCK_SHA256}"
+GEMFILE_FLAG_PATH="/var/install-flags/app/Gemfile-${GEMFILE_SHA256}"
+GEMFILE_LOCK_FLAG_PATH="/var/install-flags/app/Gemfile.lock-${GEMFILE_LOCK_SHA256}"
 
 if [[ ! -f "${GEMFILE_FLAG_PATH}" ]] || [[ ! -f "{GEMFILE_LOCK_FLAG_PATH}" ]]; then
 	bundle install \

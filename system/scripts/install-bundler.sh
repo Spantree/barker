@@ -10,13 +10,12 @@ GEM_HOME=/usr/local/bundle
 BUNDLE_APP_CONFIG=$GEM_HOME
 source "${HOME}/.bash_profile"
 
-mkdir -p /var/cache/install-flags/bundler
-
-if [ ! -f "/var/cache/install-flags/bundler/${VERSION}" ]; then
+mkdir -p /var/install-flags/bundler
+if [ ! -f "/var/install-flags/bundler/${VERSION}" ]; then
 	gem install bundler --version "${VERSION}" \
 	&& bundle config --global path "${GEM_HOME}" \
 	&& bundle config --global bin "${GEM_HOME}/bin" \
-	&& touch "/var/cache/install-flags/bundler/${VERSION}"
+	&& touch "/var/install-flags/bundler/${VERSION}"
 fi
 
 # don't create ".bundle" in all our apps

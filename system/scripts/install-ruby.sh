@@ -7,7 +7,7 @@ set -o nounset # exit when your script tries to use undeclared variables
 VERSION=2.1.2
 BASH_PROFILE="${HOME}/.bash_profile"
 
-mkdir -p /var/cache/install-flags/ruby
+mkdir -p /var/install-flags/ruby
 if [ ! -f "/var/cache/install-flags/ruby/${VERSION}" ]; then
 	touch $BASH_PROFILE \
 	&& apt-get update \
