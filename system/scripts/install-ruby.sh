@@ -15,7 +15,7 @@ if [ ! -f "/var/cache/install-flags/ruby/${VERSION}" ]; then
 	&& mkdir -p /var/lib/apt/lists/partial \
     && apt-get clean \
 	&& apt-get update \
-	&& apt-get install -y bison libgdbm-dev ruby autoconf zlib1g-dev libreadline-dev libssl-dev \
+	&& apt-get install -y bison libgdbm-dev ruby rubygems autoconf zlib1g-dev libreadline-dev libssl-dev \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/ruby \
 	&& curl -fSL -o ruby.tar.gz "http://cache.ruby-lang.org/pub/ruby/${MAJOR_VERSION}/ruby-${VERSION}.tar.gz" \
