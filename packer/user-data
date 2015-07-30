@@ -1,7 +1,17 @@
 #cloud-config
 
-apt_mirror: http://us-east-1.clouds.archive.ubuntu.com/ubuntu/
-apt_mirror_search: 
- - http://archive.ubuntu.com
-apt_mirror_search_dns: False
-disable_ec2_metadata: true
+bootcmd:
+ - rm -rf /etc/apt/sources.list
+write_files:
+ -   content: |
+        deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty main
+        deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty main
+        deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates main
+        deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates main
+        deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty universe
+        deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty universe
+        deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates universe
+        deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates universe
+    path: /etc/apt/sources.list
+    owner: root:root
+    permissions: '0644'
