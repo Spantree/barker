@@ -4,8 +4,8 @@ ROOT_DIR=$(git rev-parse --show-toplevel)
 set -x
 set -e
 
-cd "${ROOT_DIR}"
+cd "${ROOT_DIR}/packer"
 
-for t in `ls packer/*.json`; do
+for t in *.json; do
   "${ROOT_DIR}/ci/packer-ami.rb" build "${t%%.json}"
 done
