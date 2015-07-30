@@ -44,6 +44,8 @@ gem 'faker'
 # Use slim instead of erb
 gem 'slim'
 
+gem 'diplomat'
+
 gem 'lograge'
 gem 'logstash-event'
 

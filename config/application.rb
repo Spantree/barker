@@ -34,5 +34,9 @@ module Rails4TwitterClone
 
       { "params" => params }
     end
+    Diplomat.configure do |config|
+      # Set up a custom Consul URL
+      config.url = ENV["CONSUL_URL"]
+    end
   end
 end
