@@ -6,6 +6,6 @@ set -e
 
 cd "${ROOT_DIR}"
 
-for t in *.json; do
-  echo "${t%%.json}"
+for t in `ls *.json`; do
+  "${ROOT_DIR}/ci/packer-ami.rb" build "${t%%.json}"
 done
