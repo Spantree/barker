@@ -7,7 +7,8 @@ set -o nounset # exit when your script tries to use undeclared variables
 VERSION=1.10.6
 
 GEM_HOME=/usr/local/bundle
-PATH=$GEM_HOME/bin:$PATH
+BUNDLE_APP_CONFIG=$GEM_HOME
+source "${HOME}/.bash_profile"
 
 mkdir -p /var/cache/install-flags/bundler
 
