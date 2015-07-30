@@ -8,14 +8,13 @@ VERSION=2.1.2
 BASH_PROFILE="${HOME}/.bash_profile"
 
 mkdir -p /var/install-flags/ruby
-if [ ! -f "/var/cache/install-flags/ruby/${VERSION}" ]; then
+if [ ! -f "/var/install-flags/ruby/${VERSION}" ]; then
 	touch $BASH_PROFILE \
 	&& apt-get update \
-	&& apt-get install -y git-core curl ruby-dev rbenv zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libpq-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
-	
-	rbenv install -v "${VERSION}" \
+	&& apt-get install -y git-core curl ruby-dev rbenv ruby-build zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libpq-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+	&& rbenv install -v "${VERSION}" \
 	&& rbenv global "${VERSION}" \
-	&& touch "/var/cache/install-flags/ruby/${VERSION}"
+	&& touch "/var/install-flags/ruby/${VERSION}"
 fi
 
 # skip installing gem documentation

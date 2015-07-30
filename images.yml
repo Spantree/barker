@@ -1,2 +1,3 @@
 ---
-rails-4-base: ami-db9d39b0
+# rails-4-base: ami-db9d39b0
+app: none
