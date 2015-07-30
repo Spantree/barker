@@ -26,6 +26,7 @@
       "type": "shell",
       "execute_command": "sudo {{.Path}}",
       "scripts": [
+        "../system/scripts/wait-for-cloud-init.sh",
         "../system/scripts/install-ruby.sh",
         "../system/scripts/install-bundler.sh",
         "../system/scripts/install-rails.sh"
