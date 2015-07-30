@@ -9,7 +9,7 @@
     {
       "type": "amazon-ebs",
       "region": "us-east-1",
-      "source_ami": "ami-aba501c0",
+      "source_ami": "ami-db9d39b0",
       "instance_type": "c3.large",
       "ssh_username": "ubuntu",
       "ami_name": "{{user `ami_name`}}-{{user `build_number`}}",
