@@ -2,7 +2,8 @@
   "variables": {
     "ami_name": "rails-4-base",
     "build_number": "{{env `CIRCLE_BUILD_NUM`}}",
-    "sha1_hash": "{{env `CIRCLE_SHA1`}}"
+    "sha1_hash": "{{env `CIRCLE_SHA1`}}",
+    "project_dir": "/usr/src/app"
   },
   "builders": [
     {
@@ -22,9 +23,17 @@
   ],
   "provisioners": [
     {
+      "type": "shell",
+      "execute_command": "sudo {{.Path}}",
+      "inline": [
+        "mkdir -p {{user `project_dir`}}",
+        "chown ubuntu:ubuntu {{user `project_dir`}}"
+      ]
+    },
+    {
       "type": "file",
-      "source": "/",
-      "destination": "/usr/src/app"
+      "source": "../",
+      "destination": "{{user `project_dir`}}"
     },
     {
       "type": "shell",
