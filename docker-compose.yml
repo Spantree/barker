@@ -6,7 +6,8 @@ db:
     POSTGRES_PASSWORD: "insecurepassword"
 consul:
   image: progrium/consul
-  # net: host
+  net: host
+  command: "-server -bootstrap -ui-dir /ui"
   ports:
     - "8400:8400"
     - "8500:8500"
