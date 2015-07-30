@@ -1,0 +1,35 @@
+{
+  "variables": {
+    "ami_name": "barker-app"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "source_ami": "ami-c1558faa",
+      "instance_type": "c3.large",
+      "ssh_username": "ubuntu",
+      "ami_name": "{{user `ami_name`}}",
+      "tags": {
+        "Name": "{{user `ami_name`}}"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "/",
+      "destination": "/usr/src/app"
+    },
+    {
+      "type": "shell",
+      "execute_command": "sudo {{.Path}}",
+      "scripts": [
+        "system/scripts/install-ruby.sh",
+        "system/scripts/install-bundler.sh",
+        "system/scripts/install-rails.sh",
+        "system/scripts/install-app.sh"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "variables": {
+    "ami_name": "rails-4-base",
+    "build_number": "{{env `CIRCLE_BUILD_NUM`}}",
+    "sha1_hash": "{{env `CIRCLE_SHA1`}}",
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "source_ami": "ami-c1558faa",
+      "instance_type": "c3.large",
+      "ssh_username": "ubuntu",
+      "ami_name": "{{user `ami_name`}}-{{user `build_number`}}",
+      "ami_description": "Rails Base from {{user `sha1_hash`}}",
+      "tags": {
+        "Name": "{{user `ami_name`}}",
+        "Build-Number": "{{user `build_number`}}",
+        "Sha1": "{{user `sha1_hash`}}"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "/",
+      "destination": "/usr/src/app"
+    },
+    {
+      "type": "shell",
+      "execute_command": "sudo {{.Path}}",
+      "scripts": [
+        "system/scripts/install-ruby.sh",
+        "system/scripts/install-bundler.sh",
+        "system/scripts/install-rails.sh"
+      ]
+    }
+  ]
+}
