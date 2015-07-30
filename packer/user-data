@@ -2,16 +2,4 @@
 
 bootcmd:
  - rm -rf /etc/apt/sources.list
-write_files:
- -   content: |
-        deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty main
-        deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty main
-        deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates main
-        deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates main
-        deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty universe
-        deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty universe
-        deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates universe
-        deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates universe
-    path: /etc/apt/sources.list
-    owner: root:root
-    permissions: '0644'
+ - wget https://raw.githubusercontent.com/Spantree/barker/develop/packer/sources.list -O /etc/apt/sources.list      
