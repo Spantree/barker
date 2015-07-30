@@ -13,7 +13,6 @@
       "instance_type": "c3.large",
       "ssh_username": "ubuntu",
       "ami_name": "{{user `ami_name`}}-{{user `build_number`}}",
-      "ami_description": "Rails Base from {{user `sha1_hash`}}",
       "tags": {
         "Name": "{{user `ami_name`}}",
         "Build-Number": "{{user `build_number`}}",
