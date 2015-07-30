@@ -8,6 +8,7 @@ source "${HOME}/.bash_profile"
 GEM_HOME=/usr/local/bundle
 PATH=$GEM_HOME/bin:$PATH
 BUNDLE_APP_CONFIG=$GEM_HOME
+export PATH="$HOME/.rbenv/bin:$PATH"
 
 ruby -v
 
