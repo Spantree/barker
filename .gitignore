@@ -21,3 +21,5 @@
 stress_tests/target
 .vagrant
 public/assets
+*.pem
+*.log
