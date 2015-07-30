@@ -1,0 +1,1 @@
+export CONSUL_URL="http://consul.barker.internal:8500"

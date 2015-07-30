@@ -48,6 +48,7 @@ gem 'diplomat'
 
 gem 'lograge'
 gem 'logstash-event'
+gem 'logstash-logger'
 
 group :development do
   gem 'bullet'

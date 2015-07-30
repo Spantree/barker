@@ -25,8 +25,11 @@ Vagrant.configure("2") do |config|
 
     node.vm.provision :shell, path: "system/scripts/install-docker.sh", keep_color: true
     node.vm.provision :shell, path: "system/scripts/install-docker-compose.sh", keep_color: true
-    node.vm.provision :shell, inline: "docker pull postgres"
-    node.vm.provision :shell, inline: "cp -f /usr/src/app/init/app-services.conf /etc/init/app-services.conf"
+    node.vm.provision :shell, path: "system/scripts/install-consulate.sh", keep_color: true
+    node.vm.provision :shell, inline: "docker pull postgres:latest"
+    node.vm.provision :shell, inline: "docker pull progrium/consul:latest"
+    node.vm.provision :shell, inline: "docker pull spantree/elk:latest"
+    node.vm.provision :shell, inline: "cp -f /usr/src/app/etc/init/app-services.conf /etc/init/app-services.conf"
     node.vm.provision :shell, inline: "service app-services restart"
   end
 
@@ -52,7 +55,8 @@ Vagrant.configure("2") do |config|
     node.vm.provision :shell, path: "system/scripts/install-bundler.sh", keep_color: true
     node.vm.provision :shell, path: "system/scripts/install-rails.sh", keep_color: true
     node.vm.provision :shell, path: "system/scripts/install-app.sh", keep_color: true
-    node.vm.provision :shell, inline: "cp -f /usr/src/app/init/app.conf /etc/init/app.conf"
+    node.vm.provision :shell, inline: "cp -f /usr/src/app/etc/init/app.conf /etc/init/app.conf"
+    node.vm.provision :shell, inline: "cp -f /usr/src/app/etc/default/app /etc/default/app"
     node.vm.provision :shell, inline: "service app restart"
   end
 end
