@@ -4,6 +4,7 @@ set -o xtrace  # trace what gets executed
 set -o errexit # exit when a command fails.
 set -o nounset # exit when your script tries to use undeclared variables
 
+source "${HOME}/.bash_profile"
 GEM_HOME=/usr/local/bundle
 PATH=$GEM_HOME/bin:$PATH
 BUNDLE_APP_CONFIG=$GEM_HOME

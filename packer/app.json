@@ -9,7 +9,7 @@
     {
       "type": "amazon-ebs",
       "region": "us-east-1",
-      "source_ami": "ami-c1558faa",
+      "source_ami": "ami-aba501c0",
       "instance_type": "c3.large",
       "ssh_username": "ubuntu",
       "ami_name": "{{user `ami_name`}}-{{user `build_number`}}",
@@ -38,10 +38,11 @@
       "type": "shell",
       "execute_command": "sudo {{.Path}}",
       "scripts": [
-        "system/scripts/install-ruby.sh",
-        "system/scripts/install-bundler.sh",
-        "system/scripts/install-rails.sh",
-        "system/scripts/install-app.sh"
+        "../system/scripts/wait-for-cloud-init.sh",
+        "../system/scripts/install-ruby.sh",
+        "../system/scripts/install-bundler.sh",
+        "../system/scripts/install-rails.sh",
+        "../system/scripts/install-app.sh"
       ]
     }
   ]
