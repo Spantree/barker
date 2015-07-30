@@ -57,3 +57,8 @@ See more details on [Gemfile](https://github.com/toshimaru/Rails-4-Twitter-Clone
   * Edit user
   * Add spec
 * Spec of pagination
+
+## Attributions
+
+* Toshimaru's Original [Rails 4 Twitter Clone](https://github.com/toshimaru/Rails-4-Twitter-Clone) (this project is a fork of that very awesome project)
+* TANABE Ken-ichi's [Circle CI Packer Example](https://github.com/nabeken/circleci-packer-example)
