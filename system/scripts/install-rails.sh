@@ -11,10 +11,9 @@ BUNDLE_APP_CONFIG=$GEM_HOME
 source "${HOME}/.bash_profile"
 
 if [ ! -f "/var/install-flags/rails/${VERSION}" ]; then
-	apt-get install -y nodejs --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& gem install rails --version "$VERSION" \
-	&& gem install rails --version "$VERSION" \
-	&& mkdir -p /var/install-flags/rails \
-	&& touch "/var/install-flags/rails/${VERSION}"
+	apt-get install -y nodejs --no-install-recommends
+	gem install rails --version "$VERSION" \
+	gem install rails --version "$VERSION" \
+	mkdir -p /var/install-flags/rails \
+	touch "/var/install-flags/rails/${VERSION}"
 fi

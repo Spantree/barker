@@ -19,8 +19,8 @@ GEMFILE_FLAG_PATH="/var/install-flags/app/Gemfile-${GEMFILE_SHA256}"
 GEMFILE_LOCK_FLAG_PATH="/var/install-flags/app/Gemfile.lock-${GEMFILE_LOCK_SHA256}"
 
 if [[ ! -f "${GEMFILE_FLAG_PATH}" ]] || [[ ! -f "{GEMFILE_LOCK_FLAG_PATH}" ]]; then
-	bundle install \
-	&& mkdir -p /var/install-flags/app \
-	&& touch "${GEMFILE_FLAG_PATH}" \
-	&& touch "${GEMFILE_LOCK_FLAG_PATH}"
+	bundle install
+	mkdir -p /var/install-flags/app
+	touch "${GEMFILE_FLAG_PATH}"
+	touch "${GEMFILE_LOCK_FLAG_PATH}"
 fi
