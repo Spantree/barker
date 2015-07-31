@@ -10,6 +10,7 @@ development:
   encoding: unicode
   host: <%= Diplomat::Service.get('postgres').ServiceAddress %>
   port: <%= Diplomat::Service.get('postgres').ServicePort %>
+  username: <%= Diplomat::Kv.get('barker/development/postgres/db_name') %>
   username: <%= Diplomat::Kv.get('barker/development/postgres/username') %>
   password: <%= Diplomat::Kv.get('barker/development/postgres/password') %>
   pool: 5
@@ -31,6 +32,7 @@ production:
   encoding: unicode
   host: <%= Diplomat::Service.get('postgres').ServiceAddress %>
   port: <%= Diplomat::Service.get('postgres').ServicePort %>
+  username: <%= Diplomat::Kv.get('barker/production/postgres/db_name') %>
   username: <%= Diplomat::Kv.get('barker/production/postgres/username') %>
   password: <%= Diplomat::Kv.get('barker/production/postgres/password') %>
   pool: 50
