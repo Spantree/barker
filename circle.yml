@@ -13,6 +13,9 @@ dependencies:
     - mkdir -p ~/bin
     - ci/dependencies.sh
 
+database:
+  override: []
+
 test:
   override:
     - ./ci/packer-validate.sh
