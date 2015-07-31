@@ -1,5 +1,0 @@
-#cloud-config
-
-bootcmd:
- - rm -rf /etc/apt/sources.list
- - wget https://raw.githubusercontent.com/Spantree/barker/develop/packer/sources.list -O /etc/apt/sources.list      

@@ -13,7 +13,6 @@
       "instance_type": "c3.large",
       "ssh_username": "ubuntu",
       "ami_name": "{{user `ami_name`}}-{{user `build_number`}}",
-      "user_data_file": "user-data",
       "tags": {
         "Name": "{{user `ami_name`}}",
         "Build-Number": "{{user `build_number`}}",
