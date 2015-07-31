@@ -1,3 +1,4 @@
 ---
 rails-4-base: ami-8f67c3e4
 docker-compose-base: ami-8970d4e2
+app: ami-01d0776a
