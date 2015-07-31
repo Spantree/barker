@@ -6,7 +6,6 @@ set -o nounset # exit when your script tries to use undeclared variables
 
 VERSION=2.1.2
 
-mkdir -p /var/install-flags/ruby
 if [ ! -f "/var/install-flags/ruby/${VERSION}" ]; then
 	touch ~/.bash_profile \
 	&& apt-get update \
@@ -17,6 +16,7 @@ if [ ! -f "/var/install-flags/ruby/${VERSION}" ]; then
 	&& git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build \
 	&& ~/.rbenv/bin/rbenv install -v "${VERSION}" \
 	&& ~/.rbenv/bin/rbenv global "${VERSION}" \
+	&& mkdir -p /var/install-flags/ruby
 	&& touch "/var/install-flags/ruby/${VERSION}"
 fi
 

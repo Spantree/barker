@@ -10,11 +10,11 @@ GEM_HOME=/usr/local/bundle
 BUNDLE_APP_CONFIG=$GEM_HOME
 source "${HOME}/.bash_profile"
 
-mkdir -p /var/install-flags/bundler
 if [ ! -f "/var/install-flags/bundler/${VERSION}" ]; then
 	gem install bundler --version "${VERSION}" \
 	&& bundle config --global path "${GEM_HOME}" \
 	&& bundle config --global bin "${GEM_HOME}/bin" \
+	&& mkdir -p /var/install-flags/bundler \
 	&& touch "/var/install-flags/bundler/${VERSION}"
 fi
 
