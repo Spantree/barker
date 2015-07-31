@@ -28,7 +28,7 @@
         "../system/scripts/wait-for-cloud-init.sh",
         "../system/scripts/install-docker.sh",
         "../system/scripts/install-docker-compose.sh",
-        "../system/scripts/install-consulate.sh",
+        "../system/scripts/install-consulate.sh"
       ]
     }
   ]
