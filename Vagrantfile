@@ -55,8 +55,7 @@ Vagrant.configure("2") do |config|
     node.vm.provision :shell, path: "system/scripts/install-bundler.sh", keep_color: true
     node.vm.provision :shell, path: "system/scripts/install-rails.sh", keep_color: true
     node.vm.provision :shell, path: "system/scripts/install-app.sh", keep_color: true
-    node.vm.provision :shell, inline: "cp -f /usr/src/app/etc/init/app.conf /etc/init/app.conf"
-    node.vm.provision :shell, inline: "cp -f /usr/src/app/etc/default/app /etc/default/app"
+    node.vm.provision :shell, path: "system/scripts/configure-app-service.sh", keep_color: true
     node.vm.provision :shell, inline: "service app restart"
   end
 end

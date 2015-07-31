@@ -42,7 +42,8 @@
         "../system/scripts/install-ruby.sh",
         "../system/scripts/install-bundler.sh",
         "../system/scripts/install-rails.sh",
-        "../system/scripts/install-app.sh"
+        "../system/scripts/install-app.sh",
+        "../system/scripts/configure-app-service.sh"
       ]
     }
   ]
