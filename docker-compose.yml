@@ -15,3 +15,6 @@ elk:
     - "9200:9200"
     - "5000:5000"
     - "3333:3333"
+asgard:
+  image: netflixoss/asgard:1.5.1
+  net: host
