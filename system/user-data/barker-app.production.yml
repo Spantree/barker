@@ -7,5 +7,5 @@ write_files:
       export CONSUL_URL=http://10.0.0.249:8500
       export HOME=/home/ubuntu
       export RAILS_ENV=production
-bootcmd:
+runcmd:
  - service barker-app restart
