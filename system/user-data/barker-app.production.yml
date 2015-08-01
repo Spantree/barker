@@ -1,0 +1,11 @@
+#cloud-config
+write_files:
+  - path: /etc/default/barker-app
+    permissions: 0644
+    owner: root
+    content: |
+      export CONSUL_URL=http://10.0.0.249:8500
+      export HOME=/home/ubuntu
+      export RAILS_ENV=production
+bootcmd:
+ - service barker-app restart
