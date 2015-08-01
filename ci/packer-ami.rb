@@ -42,7 +42,7 @@ when 'build'
   end
 
   Dir.chdir("#{ROOT_DIR}/packer") { |path|
-    Open3.popen2e("BUILD_DATE=`2015-08-01T15-36-40Z` packer build #{template_name}.json") { |i, oe, t|
+    Open3.popen2e("BUILD_DATE=`date +'%Y-%m-%dT%H-%M-%SZ'` packer build #{template_name}.json") { |i, oe, t|
       i.close_write
       last_line = ''
       oe.each { |l|
