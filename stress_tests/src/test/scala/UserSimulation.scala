@@ -109,8 +109,7 @@ class UserSimulation extends Simulation {
     .exec(http("visit other user profile")
       .get("/users/${userNameToFollow}")
       .check(status.is(200))
-      .check(
-        regex( """<input type="hidden" value="(\d+)" name="relationship\[followed_id\]" id="relationship_followed_id" />""")
+      .check(regex( """<input type="hidden" value="(\d+)" name="relationship\[followed_id\]" id="relationship_followed_id" />""")
         .find
         .saveAs("userIdToFollow"))
     )
