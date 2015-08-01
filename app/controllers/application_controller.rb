@@ -1,3 +1,5 @@
+require 'socket'
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -33,4 +35,9 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new(params[:path])
   end
 
+  def get_server_ip
+    Socket.ip_address_list.detect{|intf| intf.ipv4_private?}.ip_address
+  end
+
+  helper_method :get_server_ip
 end
