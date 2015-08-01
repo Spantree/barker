@@ -140,12 +140,37 @@ textarea {
   padding-bottom: 20px;
 }
 
+.navbar-brand {
+  padding: 10px;
+}
+
 .navbar-header .barker-logo {
-  max-height: 25px;
-  float: left;
+  width: 100px;
+}
+
+.home-content {
+  text-align: center;
+  padding: 40px;
+}
+
+.home-content p {
+  font-size: 2em;
 }
 
 .btn {
   margin-top: 20px;
   margin-right: 1em;
+}
+
+#new_tweet textarea {
+  width: 100%;
+  resize: none;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.footer {
+  padding: 20px;
 }
