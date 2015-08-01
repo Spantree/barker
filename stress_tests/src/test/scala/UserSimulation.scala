@@ -14,7 +14,8 @@ class UserSimulation extends Simulation {
   val log = LoggerFactory.getLogger(classOf[UserSimulation])
 
   val userCount = 10
-  val baseURL = "http://172.51.1.100:3000"
+  val rampUpSeconds = 10
+  val baseURL = "http://localhost:3000"
 
   val nameGenius = new NameGenius
   val lorem = new LoremIpsum
@@ -38,8 +39,6 @@ class UserSimulation extends Simulation {
       )
     }
   )
-
-
 
   log.info(s"Running simulation for ${userCount} users.")
 
@@ -98,7 +97,7 @@ class UserSimulation extends Simulation {
     .exec(http("view user list")
       .get("/users")
       .check(status.is(200))
-      .check(regex("""<a href="/users/(\w+)">""")
+      .check(regex("""<a href="/users/([^"]+)">""")
         .findAll
         .transform(otherUsers =>
           Random.shuffle(otherUsers).head
@@ -122,6 +121,5 @@ class UserSimulation extends Simulation {
       .check(status.is(200))
     )
 
-
-  setUp(userScn.inject(rampUsers(userCount) over (20 seconds)).protocols(httpProtocol))
+  setUp(userScn.inject(rampUsers(userCount) over (rampUpSeconds seconds)).protocols(httpProtocol))
 }
