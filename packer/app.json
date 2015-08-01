@@ -13,12 +13,12 @@
       "source_ami": "ami-8f67c3e4",
       "instance_type": "c3.large",
       "ssh_username": "ubuntu",
-      "ami_name": "{{user `ami_name`}}-{{user `build_number`}}-{{user `build_date`}",
+      "ami_name": "{{user `ami_name`}}-{{user `build_number`}}-{{user `build_date`}}",
       "tags": {
         "Name": "{{user `ami_name`}}",
         "Build-Number": "{{user `build_number`}}",
-        "Build-Date": "{{user `build_date`}",
-        "Sha1": "{{user `sha1_hash`}}",
+        "Build-Date": "{{user `build_date`}}",
+        "Sha1": "{{user `sha1_hash`}}"
       }
     }
   ],
