@@ -2,6 +2,7 @@
   "variables": {
     "ami_name": "barker-app",
     "build_number": "{{env `CIRCLE_BUILD_NUM`}}",
+    "build_date": "{{env `BUILD_DATE`}}",
     "sha1_hash": "{{env `CIRCLE_SHA1`}}",
     "project_dir": "/usr/src/app"
   },
@@ -12,11 +13,12 @@
       "source_ami": "ami-8f67c3e4",
       "instance_type": "c3.large",
       "ssh_username": "ubuntu",
-      "ami_name": "{{user `ami_name`}}-{{user `build_number`}}",
+      "ami_name": "{{user `ami_name`}}-{{user `build_number`}}-{{user `build_date`}",
       "tags": {
         "Name": "{{user `ami_name`}}",
         "Build-Number": "{{user `build_number`}}",
-        "Sha1": "{{user `sha1_hash`}}"
+        "Build-Date": "{{user `build_date`}",
+        "Sha1": "{{user `sha1_hash`}}",
       }
     }
   ],
