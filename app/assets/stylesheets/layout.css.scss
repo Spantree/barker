@@ -127,10 +127,25 @@ textarea {
 }
 .one-col {
   background-color: #fff;
-  padding: 20px 10px;
+  padding: 20px;
 }
 .header-menu {
   .fa {
     margin-right: 8px;
   }
+}
+
+.barker-logo {
+  max-width: 300px;
+  padding-bottom: 20px;
+}
+
+.navbar-header .barker-logo {
+  max-height: 25px;
+  float: left;
+}
+
+.btn {
+  margin-top: 20px;
+  margin-right: 1em;
 }
