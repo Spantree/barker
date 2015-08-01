@@ -14,7 +14,8 @@ dependencies:
     - ci/dependencies.sh
 
 database:
-  override: []
+  override:
+    - echo "skip database setup"
 
 test:
   override:
