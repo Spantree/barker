@@ -24,7 +24,7 @@ end
 
 def is_ami_up_to_date(name)
   images = load_yaml(open("#{ROOT_DIR}/images.yml").read)
-  !images[name].nil?
+  !images[name].nil? && name != "app"
 end
 
 case ARGV[0]
