@@ -1,21 +1,22 @@
 import io.gatling.core.Predef._
-import io.gatling.http.Predef._
-import org.apache.http.client.methods.HttpDelete
-import org.apache.http.impl.client.DefaultHttpClient
-import scala.concurrent.duration._
 import io.gatling.core.filter.WhiteList
+import io.gatling.http.Predef._
 import jodd.log.LoggerFactory
-import scala.util.Random
 import net._01001111.text.LoremIpsum
 import net.spantree.namegenius.NameGenius
 import org.apache.commons.lang.RandomStringUtils
+import org.apache.http.client.methods.HttpDelete
+import org.apache.http.impl.client.DefaultHttpClient
+
+import scala.concurrent.duration._
+import scala.util.Random
 
 class UserSimulation extends Simulation {
   val log = LoggerFactory.getLogger(classOf[UserSimulation])
 
-  val userCount = 10
-  val rampUpSeconds = 10
-  val baseURL = "http://localhost:3000"
+  val userCount = Integer.getInteger("users", 10)
+  val rampUpSeconds = Integer.getInteger("rampUpSeconds", userCount)
+  val baseURL = System.getProperty("baseUrl", "http://localhost:3000")
 
   val nameGenius = new NameGenius
   val lorem = new LoremIpsum
