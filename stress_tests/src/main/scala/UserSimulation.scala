@@ -16,28 +16,40 @@ class UserSimulation extends Simulation {
 
   val userCount = Integer.getInteger("users", 10)
   val rampUpSeconds = Integer.getInteger("rampUpSeconds", userCount)
+  val tweetCount = Integer.getInteger("barkCount", 1)
   val baseURL = System.getProperty("baseUrl", "http://localhost:3000")
+
+  val resetDatabase = System.getProperty("resetDatabase") == "true"
 
   val nameGenius = new NameGenius
   val lorem = new LoremIpsum
 
   before {
-    println("Resetting database.")
-    val client = new DefaultHttpClient()
-    val req = new HttpDelete(s"${baseURL}/all")
-    val res = client.execute(req)
-    println(s"Reset responded with status ${res.getStatusLine.toString}")
+    if(resetDatabase) {
+      println("Resetting database.")
+      val client = new DefaultHttpClient()
+      val req = new HttpDelete(s"${baseURL}/all")
+      val res = client.execute(req)
+      println(s"Reset request responded with status ${res.getStatusLine.toString}")
+    } else {
+      println("Not resetting database, leaving as-is")
+    }
+  }
+
+  val generateTweets = Seq.fill(tweetCount) {
+    lorem.words(10)
   }
 
   val feeder = Iterator.continually({
       val person = nameGenius.generate
-      Map(
+      val sessionVals = Map(
         "slug" -> s"${person.getFirstName}_${person.getLastName}",
         "name" -> s"${person.getFirstName} ${person.getLastName}",
         "password" -> RandomStringUtils.randomAlphanumeric(20),
         "email" -> s"${person.getFirstName}.${person.getLastName}@test.com",
-        "tweet" -> lorem.words(10)
+        "tweets" -> generateTweets.seq
       )
+    sessionVals
     }
   )
 
@@ -80,21 +92,24 @@ class UserSimulation extends Simulation {
       .formParam("commit", "Sign up")
       .check(status.is(200))
     )
-    .pause(1)
-    .exec(http("post first tweet")
-      .post("/tweets")
-      .formParam("utf8", "✓")
-      .formParam("tweet[content]", "${tweet}")
-      .formParam("commit", "Post")
-      .check(status.is(200))
-    )
-    .pause(1)
+    .pause(3)
+    .foreach("${tweets}", "tweet", "tweetIndex") {
+      exec(http("post tweet #${tweetIndex}")
+        .post("/tweets")
+        .formParam("utf8", "✓")
+        .formParam("tweet[content]", "${tweet}")
+        .formParam("commit", "Post")
+        .check(status.is(200))
+      )
+      .pause(3)
+    }
+    .pause(5)
     .exec(http("check profile")
       .get("/users/${slug}")
       .check(status.is(200))
       .check(regex("""<div class="tweet-content">${tweet}</div>"""))
     )
-    .pause(1)
+    .pause(5)
     .exec(http("view user list")
       .get("/users")
       .check(status.is(200))
@@ -106,7 +121,7 @@ class UserSimulation extends Simulation {
         .saveAs("userNameToFollow"))
     )
     .exitHereIfFailed
-    .pause(1)
+    .pause(5)
     .exec(http("visit other user profile")
       .get("/users/${userNameToFollow}")
       .check(status.is(200))
