@@ -91,6 +91,11 @@
             <version>${scala.version}</version>
         </dependency>
         <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <dependency>
             <groupId>net.spantree.namegenius</groupId>
             <artifactId>name-genius</artifactId>
             <version>1.0.11</version>
