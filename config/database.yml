@@ -6,13 +6,8 @@
 
 <% if Rails.env.development? %>
 development:
-  adapter: postgresql
-  encoding: unicode
-  host: <%= Diplomat::Service.get('postgres').ServiceAddress %>
-  port: <%= Diplomat::Service.get('postgres').ServicePort %>
-  username: <%= Diplomat::Kv.get('barker/development/postgres/db_name') %>
-  username: <%= Diplomat::Kv.get('barker/development/postgres/username') %>
-  password: <%= Diplomat::Kv.get('barker/development/postgres/password') %>
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
 <% end %>
