@@ -40,6 +40,13 @@ class UserSimulation extends Simulation {
     lorem.words(10)
   }
 
+  def pickRandomUser(users: Seq[String], session: Session): String = {
+    Random.shuffle(
+      // filter out the current user from the list
+      users.filter(_ != session("slug"))
+    ).head
+  }
+
   val feeder = Iterator.continually({
       val person = nameGenius.generate
       val sessionVals = Map(
@@ -61,7 +68,8 @@ class UserSimulation extends Simulation {
 
   val headers_1 = Map(
     "Accept" -> "text/html, application/xhtml+xml, application/xml",
-    "X-XHR-Referer" -> s"${baseURL}/")
+    "X-XHR-Referer" -> s"${baseURL}/"
+  )
 
   val resetScn = scenario("Reset database")
     .exec(http("send reset request")
@@ -102,42 +110,43 @@ class UserSimulation extends Simulation {
         .check(status.is(200))
       )
       .pause(3)
+      .exec(http("check profile")
+        .get("/users/${slug}")
+        .check(status.is(200))
+        .check(regex("""${tweet}"""))
+      )
+      .pause(3)
     }
-    .pause(5)
-    .exec(http("check profile")
-      .get("/users/${slug}")
-      .check(status.is(200))
-      .check(regex("""<div class="tweet-content">${tweet}</div>"""))
-    )
     .pause(5)
     .exec(http("view user list")
       .get("/users")
       .check(status.is(200))
       .check(regex("""<a href="/users/([^"]+)">""")
         .findAll
-        .transform(otherUsers =>
-          Random.shuffle(otherUsers).head
-        )
+        .transform(pickRandomUser _)
         .saveAs("userNameToFollow"))
     )
     .exitHereIfFailed
     .pause(5)
-    .exec(http("visit other user profile")
-      .get("/users/${userNameToFollow}")
-      .check(status.is(200))
-      .check(regex( """<input type="hidden" value="(\d+)" name="relationship\[followed_id\]" id="relationship_followed_id" />""")
-        .find
-        .saveAs("userIdToFollow"))
-    )
-    .exitHereIfFailed
-    .pause(1)
-    .exec(http("follow user")
-      .post("/relationships")
-      .formParam("utf8", "✓")
-      .formParam("relationship[followed_id]", "${userIdToFollow}")
-      .formParam("commit", "Follow")
-      .check(status.is(200))
-    )
+    .doIf(session => session("userNameToFollow").as[String].length() > 0) {
+      exec(http("visit other user profile")
+        .get("/users/${userNameToFollow}")
+        .check(status.is(200))
+        .check(regex( """<input type="hidden" value="(\d+)" name="relationship\[followed_id\]" id="relationship_followed_id" />""")
+          .find
+          .saveAs("userIdToFollow")
+        )
+      )
+      .exitHereIfFailed
+      .pause(1)
+      .exec(http("follow user")
+        .post("/relationships")
+        .formParam("utf8", "✓")
+        .formParam("relationship[followed_id]", "${userIdToFollow}")
+        .formParam("commit", "Follow")
+        .check(status.is(200))
+      )
+    }
 
   setUp(userScn.inject(rampUsers(userCount) over (rampUpSeconds seconds)).protocols(httpProtocol))
 }
