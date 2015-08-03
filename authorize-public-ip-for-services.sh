@@ -10,15 +10,19 @@
 # You will also need to change SECURITY_GROUP_ID
 # to match the ID for the security group assigned to the barker services instance. 
 
+set -o xtrace  # trace what gets executed
+set -o errexit # exit when a command fails.
+set -o nounset # exit when your script tries to use undeclared variables
+
 SECURITY_GROUP_NAME="barker-services"
 AWS_CLI_PROFILE_NAME="barker"
-PUBLIC_IP_ADDRESS=`dig +short myip.opendns.com @resolver1.opendns.com`
+PUBLIC_IP_ADDRESS="${PUBLIC_IP_ADDRESS:-`dig +short myip.opendns.com @resolver1.opendns.com | awk 'NR != 1'`}"
 SECURITY_GROUP_ID="sg-bbd561dc"
 
 TCP_PORTS=(3333 5000 5601 8080 8500 9200)
 
 for p in "${TCP_PORTS[@]}"
 do
-	echo "Authorizing IP '${PUBLIC_IP_ADDRESS} to access port ${p}"
+	echo "Authorizing IP '${PUBLIC_IP_ADDRESS}'' to access port ${p}"
 	aws ec2 authorize-security-group-ingress --profile $AWS_CLI_PROFILE_NAME --group-id $SECURITY_GROUP_ID --protocol tcp --port $p --cidr "${PUBLIC_IP_ADDRESS}/32"
 done
