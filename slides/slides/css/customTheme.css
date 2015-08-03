@@ -1,0 +1,148 @@
+@font-face {
+  font-family: "Muli";
+  src: url("fonts/Muli.ttf");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/OpenSans-Light.ttf"), url("fonts/OpenSans-Regular.ttf"), url("fonts/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Open Sans Condensed";
+  src: url("fonts/OpenSans-CondBold.ttf"), url("fonts/OpenSans-CondLight.ttf");
+}
+
+body {
+	font-family: "Open Sans", "Muli", Sans-serif;
+  color: #2c3e50;
+  background: rgba(203,210,214,1);
+  background: -moz-linear-gradient(top, rgba(203,210,214,1) 0%, rgba(236,240,241,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(203,210,214,1)), color-stop(100%, rgba(236,240,241,1)));
+  background: -webkit-linear-gradient(top, rgba(203,210,214,1) 0%, rgba(236,240,241,1) 100%);
+  background: -o-linear-gradient(top, rgba(203,210,214,1) 0%, rgba(236,240,241,1) 100%);
+  background: -ms-linear-gradient(top, rgba(203,210,214,1) 0%, rgba(236,240,241,1) 100%);
+  background: linear-gradient(to bottom, rgba(203,210,214,1) 0%, rgba(236,240,241,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cbd2d6', endColorstr='#ecf0f1', GradientType=0 );
+  font-size: 18pt;
+}
+
+.reveal a {
+  text-decoration: none;
+  color: #e67e22;
+}
+
+.bg-emerald {
+  background-color: #2ECC71;
+  color: #fff;
+}
+
+.bg-peter-river {
+  background-color: #3498DB;
+  color: #fff;
+}
+
+.bg-orange {
+  background-color: #F39C12;
+  color: #fff;
+}
+
+.bg-asphalt {
+  background-color: #34495E;
+  color: #fff;
+}
+
+.bg-sun-flower {
+  background-color: #F1C40F;
+  color: #fff;
+}
+
+.bg-turquoise {
+  background-color: #1ABC9C;
+  color: #fff;
+}
+
+.bg-pomergranate {
+  background-color: #C0392B;
+  color: #fff;
+}
+
+.bg-lavendar {
+  background-color: #9B59B6;
+  color: #fff;
+}
+
+.socialMedia {
+	content: 'divideby0';
+}
+
+.logos img {
+  max-width: 300px;
+  margin-right: 20px;
+}
+
+.client-logos img {
+  max-width: 220px;
+  max-height: 70px;
+  margin: 10px 10px;
+}
+
+.tech-logos img {
+  max-width: 140px;
+  max-height: 70px;
+  margin: 10px 10px;
+}
+
+.client-logos img.artbox {
+  background-color: #fff;
+  padding: 7px;
+}
+
+.barky-picture img {
+  max-width: 80%;
+}
+
+.diagram img {
+  max-width: 60%;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+  font-family: 'Open Sans', 'Muli', Sans-serif;
+  font-weight: 700;
+  padding-bottom: 0.8em;
+}
+
+.reveal ul {
+  list-style-type: none;
+}
+
+.reveal ul li {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.reveal .stages ul {
+  list-style-type: disc;
+  margin-top: 1em;
+}
+
+.reveal .stages ul li {
+  text-align: left;
+}
+
+.print-pdf {
+  padding: 30px;
+}
+
+body.print-pdf {
+  background: #fff;
+}
+
+.print-pdf .reveal section img {
+  border: none;
+}
+
+.print-pdf h1, .print-pdf h2, .print-pdf h3, .print-pdf h4, .print-pdf h5 {
+  text-align: center;
+}
+

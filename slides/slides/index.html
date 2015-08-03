@@ -1,0 +1,276 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Creating Highly-Available Applications for the Cloud</title>
+  <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css"> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans+Condensed:400,700" rel="stylesheet" type="text/css"> -->
+  <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css"/>
+  <!-- <link rel="stylesheet" href="bower_components/reveal.js/css/print/pdf.css"/>
+  <link rel="stylesheet" href="bower_components/reveal.js/css/print/paper.css"/> -->
+  <link rel="stylesheet" href="css/customTheme.css"/>
+</head>
+<body>
+  <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+  <![endif]-->
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Creating Highly-Available Applications for the Cloud 
+
+              ![Spantree Logo](images/spantree-logo.svg)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## About Spantree
+
+              <img alt="Spantree Team" src="images/team.jpg" style="max-width: 930px; max-height: 600px;"/>
+          </script>
+        </section>
+        <section data-markdown class="client-logos">
+          <script type="text/template">
+              ### Sorts of things we work on
+
+              <img alt="Arena Solutions" src="images/clients/arena.png" class="artbox"/>
+              <img alt="Braintree" src="images/clients/braintree.png"/>
+              <img alt="Chicago.com" src="images/clients/chicagocom.png"/>
+              <img alt="Conference Solutions" src="images/clients/conferencesolutions.png" class="artbox"/>
+              <img alt="Doejo" src="images/clients/doejo.png"/>
+              <img alt="Geofeedia" src="images/clients/geofeedia.png" class="artbox"/>
+              <img alt="GoHealth" src="images/clients/gohealth.png"/>
+              <img alt="High School Cube" src="images/clients/highschoolcube.png" class="artbox"/>
+              <img alt="MileIQ" src="images/clients/mileiq.png"/>
+              <img alt="Mobiquity" src="images/clients/mobiquity.png" class="artbox"/>
+              <img alt="Mozilla Foundation" src="images/clients/mozilla.svg"/>
+              <img alt="Northwestern Medicine" src="images/clients/nmh.gif" class="artbox"/>
+              <img alt="Panera" src="images/clients/panera.png"/>
+              <img alt="Phoshor Games Studio" src="images/clients/phosphor.jpg"/>
+              <img alt="Reverb.com" src="images/clients/reverb.png"/>
+              <img alt="Chicago Sun-Times" src="images/clients/suntimes.jpg" class="artbox"/>
+              <img alt="The Channel Company" src="images/clients/tcc.jpg" class="artbox"/>
+              <img alt="Wrapports" src="images/clients/wrapports.png" class="artbox"/>
+          </script>
+        </section>
+        <section data-markdown class="tech-logos">
+          <script type="text/template">
+              ### Technologies we work with
+
+              ![Amazon Web Services](images/tech/aws.svg)
+              ![Asgard](images/tech/asgard.png)
+              ![Github](images/tech/github.svg)
+              ![Vagrant](images/tech/vagrant.png)
+              ![Packer](images/tech/packer.png)
+
+              ![Puppet](images/tech/puppet.svg)
+              ![Jenkins](images/tech/jenkins.png)
+              ![Gatling](images/tech/gatling.png)
+              ![Docker](images/tech/docker.png)
+              ![Mesos](images/tech/mesos.png)
+
+              ![PostgreSQL](images/tech/postgres.png)
+              ![MongoDB](images/tech/mongodb.png)
+              ![Neo4J](images/tech/neo4j.png)
+              ![Elasticsearch](images/tech/elastic.png)
+
+              ![Java](images/tech/java.svg)
+              ![Groovy](images/tech/groovy.svg)
+              ![Grails](images/tech/grails.svg)
+              ![Scala](images/tech/scala.png)
+
+              ![Angular](images/tech/angular.png)
+              ![React](images/tech/reactjs.png)
+              ![Backbone.js](images/tech/backbone.png)
+              ![jQuery](images/tech/jquery.svg)
+              ![Coffeescript](images/tech/coffeescript.svg)
+          </script>
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              # What this talk is about
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ![Guru](images/guru.jpg)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ![Toolbox](images/home-improvement.jpg)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ![Barkerapp](images/barker-logo.svg)
+          </script>
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              # What&#39;s Barker?
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ![Twitter Fail Whale](images/twitter-fail-whale.jpg)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ![Rails 4 Twitter Clone](images/rails-4-twitter-clone.png)
+          </script>
+        </section>
+        <section data-markdown class="barky-picture">
+          <script type="text/template">
+              ![Barky](images/barky.jpg)
+          </script>
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              ## How do we achieve high availability?
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ![The Twelve Factor App](images/12-factor.png)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ![Immutable Infrastructure](images/immutable-infrastructure.png)
+          </script>
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              # What are our goals?
+          </script>
+        </section>
+        <section data-markdown class="barky-picture">
+          <script type="text/template">
+              ## Resiliency
+              
+              ![Resilient](images/barky-resilient.jpg)
+          </script>
+        </section>
+        <section data-markdown class="barky-picture">
+          <script type="text/template">
+              ## Responsiveness
+
+              ![Resilient](images/barky-responsive.jpg)
+          </script>
+        </section>
+        <section data-markdown class="barky-picture">
+          <script type="text/template">
+              ## Elasticity
+
+              ![Elastic](images/barky-elastic.jpg)
+          </script>
+        </section>
+        <section data-markdown class="barky-picture">
+          <script type="text/template">
+              ## Replication
+
+              ![Replication](images/barky-replication.jpg)
+          </script>
+        </section>
+        <section data-markdown class="barky-picture">
+          <script type="text/template">
+              ## Supervision
+
+              ![Supervision](images/barky-supervision.jpg)
+          </script>
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              # Barkerapp Architecture
+          </script>
+        </section>
+        <section data-markdown class="diagram">
+          <script type="text/template">
+              ## Continuous Integration Workflow
+              
+              <img alt="Continuous Integration" src="images/continuous-integration.png" style="max-width: 60%;"/>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Logical Infrastructure
+
+              ![Local Infrastructure](images/logical-infrastructure.png)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Physical Infrastructure
+
+              <img alt="Physical Infrastructure" src="images/physical-infrastructure.png" style="max-width: 75%;"/>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## AWS Cloud Model
+
+              <img alt="AWS Cloud Model" src="images/aws-cloud-model.png" style="max-width: 80%;"/>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Red-Black Deployments
+
+              ![Red Black Deployments](images/red-black-deployments.png)
+          </script>
+        </section>
+      </section>
+    <div>
+  </div>
+
+  <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+  <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+
+  <script>
+   Reveal.initialize({
+    transition: 'slide',
+    backgroundTransition: 'slide',
+    progress: true,
+    history: true,
+    dependencies: [
+        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+        { src: 'bower_components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+        // Interpret Markdown in <section> elements
+        { src: 'bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+        // Syntax highlight for <code> elements
+        { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom in and out with Alt+click
+        { src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Speaker notes
+        { src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Remote control your reveal.js presentation using a touch device
+        { src: 'bower_components/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+  </script>
+</body>
+</html>
