@@ -17,6 +17,18 @@ To achieve high availability, we use a number of open-source and cloud-based too
 * [Asgard](https://github.com/Netflix/asgard) for zero-downtime rolling deployments to AWS, see [docker-compose](https://github.com/Spantree/barker/blob/570a297e695196f0321e982e5751d710db5a6664/docker-compose.yml#L18-L20) and [plugin](https://github.com/Spantree/barker/tree/develop/system/asgard) configurations.
 * [Gatling](http://gatling.io) for stress testing, see [stress_tests folder](stress_tests).
 
+## Continuous Integration Workflow
+
+Leveraging Github, CircleCI and Packer, we're able to go straight from developers pushing changes into Github into a deployable Amazon machine image:
+
+![Continuous Integration Workflow](slides/slides/images/continuous-integration.png)
+
+## Infrastructural Components
+
+One the machine image is created, we also leverage Asgard and a number of other tools to support continuous deployment, service discovery and log aggregation:
+
+![Logical Infrastructure](slides/slides/images/logical-infrastructure.png)
+
 ## Presentation
 
 There is an accompanying brower-based slide deck that walks through the motivations for this project and its architecture [here](http://bit.ly/hacloudapps).
