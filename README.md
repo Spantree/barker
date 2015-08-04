@@ -4,7 +4,11 @@
 
 ## What is Barker?
 
-Barker is a Rails 4-based Twitter clone originally created by [Toshimaru](https://github.com/toshimaru/Rails-4-Twitter-Clone) to demonstrate how to build a basic Ruby on Rails application based on this [Ruby on Rails Tutorial](http://ruby.railstutorial.org/ruby-on-rails-tutorial-book). The original has been extended by [Spantree Technology Group, LLC] to show to to transform an traditional web application to support high availability on the cloud using tools like:
+Barker is a Rails 4-based Twitter clone originally created by [Toshimaru](https://github.com/toshimaru/Rails-4-Twitter-Clone) to demonstrate how to build a basic Ruby on Rails application based on this [Ruby on Rails Tutorial](http://ruby.railstutorial.org/ruby-on-rails-tutorial-book). The original has been extended by [Spantree Technology Group, LLC](http://spantree.net) to show to to transform an traditional web application to support high availability on the cloud.
+
+## Toolchain
+
+To achieve high availability, we use a number of open-source and cloud-based tools, such as:
 
 * [Consul](http://consul.io) for fault-tolerant and datacenter-aware service discovery, see [Diplomat](https://github.com/Spantree/barker/blob/5b409b914396e824a4b58aeed85d11cc24a8ba54/config/application.rb#L42-L57), [database](https://github.com/Spantree/barker/blob/5b409b914396e824a4b58aeed85d11cc24a8ba54/config/database.yml#L28-L38) and [docker-compose](https://github.com/Spantree/barker/blob/570a297e695196f0321e982e5751d710db5a6664/docker-compose.yml#L7-L10) configurations.
 * [ELK](https://www.elastic.co/webinars/introduction-elk-stack) for distributed log aggregation, see [Rails logging](https://github.com/Spantree/barker/blob/5b409b914396e824a4b58aeed85d11cc24a8ba54/config/application.rb#L50-L56) and [docker-compose](https://github.com/Spantree/barker/blob/570a297e695196f0321e982e5751d710db5a6664/docker-compose.yml#L11-L17) configurations.
